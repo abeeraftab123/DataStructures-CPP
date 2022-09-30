@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        int N = nums.size() ;
+        int sum = 0  ;
+        
+        
+        unordered_map<int,int>mp ;
+        int ans = 0 ;
+        int i = 0 , j = 0 ;
+        
+        while( i < N )
+        {
+            mp[nums[i]]++ ;
+            sum+=nums[i] ;
+            
+            if( mp[nums[i]] == 2 )
+            {
+                while( mp[nums[i]] == 2 )
+                {
+                    mp[nums[j]]--;
+                    sum=sum-nums[j] ;
+                    j++ ;
+                }
+                
+            }
+            
+            ans=max(ans,sum);
+            i++ ;
+            
+        }
+        
+        return ans ;
+    }
+};

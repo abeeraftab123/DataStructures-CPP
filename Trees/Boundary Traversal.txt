@@ -1,0 +1,55 @@
+class Solution {
+public:
+    bool isleaf(Node *root)
+    {
+        if(!root->left&&!root->right) return true;
+        return false;
+    }
+    void left(Node* root, vector<int> &res)
+    {
+        Node* cur = root->left;
+        while(cur)
+        {
+            if(!isleaf(cur)) res.push_back(cur->data);
+            if(cur->left) cur = cur->left;
+            else cur = cur->right;
+        }
+    }
+    void allleaf(Node* root, vector<int>&res)
+    {
+        if(isleaf(root)) 
+        {
+            res.push_back(root->data);
+            return;
+        }
+        if(root->left) allleaf(root->left, res);
+        if(root->right) allleaf(root->right, res);
+    }
+    void right(Node* root, vector<int> &res)
+    {
+        Node* cur = root->right;
+        stack<int> s;
+        while(cur)
+        {
+            if(!isleaf(cur)) s.push(cur->data);
+            if(cur->right) cur = cur->right;
+            else cur = cur->left;
+        }
+        while(!s.empty())
+        {
+            res.push_back(s.top());
+            s.pop();
+        }
+    }
+    vector <int> boundary(Node *root)
+    {
+        //Your code here
+        vector<int> res;
+        if(!root) return res;
+        if(!isleaf(root)) res.push_back(root->data);
+        left(root,res);
+        allleaf(root,res);
+        right(root,res);
+        return res;
+    }
+};

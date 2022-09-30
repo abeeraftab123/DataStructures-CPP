@@ -1,0 +1,36 @@
+public:
+    void reverse(Node*l,Node*r){
+        
+        if(l==r)return;
+        Node*temp=l->next;
+        while(l!=r){
+            Node*p=temp->next;
+            temp->next=l;
+            l=temp;
+            temp=p;
+        }
+    }
+    Node* reverseBetween(Node* head, int left, int right)
+    {
+        //code here
+        int lf=left;
+        Node*first=head,*f=head,*last=head,*l=head;
+        while(--left){
+            f=first;
+            first=first->next;
+        }
+        while(--right){
+            l=last;
+            last=last->next;
+        }
+        cout<<l->data<<" "<<last->data;
+        
+        l=last->next;
+        reverse(first,last);
+        if(lf==1){
+            head=last;
+        }
+        f->next=last;
+        first->next=l;
+        return head;
+    }

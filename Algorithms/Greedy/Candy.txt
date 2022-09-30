@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+        int n = ratings.size(), sum = 0;
+        vector<int> l2r(n,1);
+        vector<int> r2l(n,1);
+        vector<int> maxi;
+        for(int i = 0; i<n-1; i++)
+            if(ratings[i]<ratings[i+1])
+                l2r[i+1] = l2r[i]+1;
+        for(int i = n-1; i>0; i--)
+            if(ratings[i]<ratings[i-1])
+                r2l[i-1] = r2l[i]+1;
+        for(int i = 0; i<n; i++)
+        {
+            maxi.push_back(max(l2r[i],r2l[i]));
+            sum+=maxi[i];
+        }
+        return sum;
+    }
+};

@@ -1,0 +1,16 @@
+class Solution {
+public:
+    void invert(TreeNode* r)
+    {
+        if(r==NULL) return;
+        swap(r->left,r->right);
+        invert(r->left);
+        invert(r->right);
+        
+    }
+    TreeNode* invertTree(TreeNode* root) {
+        if(root==NULL) return root;
+        invert(root);
+        return root;
+    }
+};

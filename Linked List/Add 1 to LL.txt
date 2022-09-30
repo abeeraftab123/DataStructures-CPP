@@ -1,0 +1,40 @@
+class Solution
+{
+    public:
+    Node* reverse(Node *head) {
+       Node *temp = head, *prev = NULL, *next;
+       while(temp != NULL) {
+            next = temp -> next;
+            temp -> next = prev;
+            prev = temp;
+            temp = next;
+       }
+       return prev;
+   }
+
+
+   Node* addOne(Node *head) 
+   {
+       head = reverse(head);
+       Node *temp = head;
+       while(temp != NULL) {
+           if(temp -> next == NULL && temp -> data == 9) {
+               temp -> data = 1;
+               Node *newnode = new Node(0);
+               newnode -> next = head;
+               head = newnode;
+               temp = temp -> next;
+           }
+           else if(temp -> data == 9) {
+               temp -> data = 0;
+               temp = temp -> next;
+           }
+           else {
+               temp -> data = temp -> data + 1;
+               break;
+           }
+       }
+       head = reverse(head);
+       return head;
+   }
+};

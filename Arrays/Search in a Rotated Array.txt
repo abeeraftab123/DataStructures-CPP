@@ -1,0 +1,37 @@
+int search(int arr[], int l, int h, int key){
+
+        int l1 = l, h1=h, l2=0, h2=h;
+        for(int i = 0; i<=h; i++)
+        {
+            if(arr[i]>arr[i+1])
+            {
+                h1 = i;
+                l2 = i+1;
+                break;
+            }
+        }
+        while(l1<=h1)
+        {
+            int mid=l1+(h1-l1)/2;
+            if(arr[mid]==key)
+                return mid;
+            else if(arr[mid]<key)
+                l1=mid+1;
+            else 
+                h1=mid-1;
+        }
+        if(l2!=0)
+        {
+            while(l2<=h2)
+            {
+                int mid=l2+(h2-l2)/2;
+                if(arr[mid]==key)
+                    return mid;
+                else if(arr[mid]<key)
+                    l2=mid+1;
+                else 
+                    h2=mid-1;
+            }
+        }
+        return -1;
+    }

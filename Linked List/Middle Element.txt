@@ -1,0 +1,16 @@
+class Solution {
+public:
+    ListNode* Middle(ListNode* head) {
+        if(!head) return head;
+        if(!head->next) return head;
+        ListNode* f = head;
+        ListNode* s = head;
+        while(f!=NULL && f->next!=NULL)
+        {
+            f = f->next->next;
+            if(f!=NULL && f->next!=NULL)
+                s = s->next;
+        }
+        return s;
+    }
+};

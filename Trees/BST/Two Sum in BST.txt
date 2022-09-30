@@ -1,0 +1,23 @@
+void fun(TreeNode *root,vector<int>&v)
+    {
+        if(!root)return;
+        fun(root->left,v);
+        v.push_back(root->val);
+        fun(root->right,v);
+    }
+    //time complexity o(n)(inorder) + o(n)(two pointer)
+    //space complexit o(n)(stack space)+o(n)(vector's space to store inorder)
+    
+    bool findTarget(TreeNode* root, int k) {
+        vector<int> v;
+        fun(root,v);
+        int i = 0,j = v.size()-1;
+        //applying two pointer
+        while(i < j){
+            if( v[i] +v[j] == k)return true;
+            else if( v[i]+v[j] < k){
+                i++;
+            }else j--;
+        }
+        return false;
+    }

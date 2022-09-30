@@ -1,0 +1,16 @@
+if(!root) return;
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int n=q.size();
+            while(n)
+            {
+              auto b=q.front(); q.pop();
+              if(n==1) b->nextRight=NULL;
+              else b->nextRight=q.front();
+              if(b->left) q.push(b->left);
+              if(b->right) q.push(b->right);
+              n--;
+            }
+        }

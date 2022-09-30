@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void inorderDfs(TreeNode* node, vector<int>& trackVec)
+    {
+        if (node == nullptr)
+        {
+            return;
+        }
+
+        inorderDfs(node->left, trackVec);
+        trackVec.push_back(node->val);
+        inorderDfs(node->right, trackVec);
+
+    }
+
+    vector<int> inorderTraversal(TreeNode* root) 
+    {
+        vector<int> track;
+        inorderDfs(root,track);
+        return track;
+    }
+};

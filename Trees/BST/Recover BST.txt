@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int i  = 0;
+    void inorder(TreeNode* root, vector<int> &v)
+    {
+        if(root)
+        {
+            inorder(root->left,v);
+            v.push_back(root->val);
+            inorder(root->right,v);
+        }
+    }
+    void correction(TreeNode* root, vector<int> &v)
+    {
+        if(root)
+        {
+            correction(root->left,v);
+            root->val = v[i];
+            i++;
+            correction(root->right,v);
+        }
+    }
+    void recoverTree(TreeNode* root) {
+        vector<int> v,n;
+        inorder(root,v);
+        n = v;
+        sort(v.begin(),v.end());
+        correction(root,v);
+    }
+};

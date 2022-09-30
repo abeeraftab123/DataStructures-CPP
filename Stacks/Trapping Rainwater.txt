@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int trap(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> maxl, maxr, water;
+        int ml = arr[0], mr = arr[n-1];
+        maxl.push_back(ml);
+        maxr.push_back(mr);
+        for(int i = 1; i<n; i++)
+        {
+            ml = max(arr[i],ml);
+            maxl.push_back(ml);
+        }
+        for(int i = n-2; i>=0; i--)
+        {
+            mr = max(arr[i],mr);
+            maxr.push_back(mr);
+        }
+        reverse(maxr.begin(),maxr.end());
+        int ans = 0;
+        for(int i = 0; i<n; i++)
+        {
+            water.push_back(min(maxl[i],maxr[i]) - arr[i]);
+            ans += water[i];
+        }
+        return ans;
+    }
+};

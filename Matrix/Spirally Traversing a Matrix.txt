@@ -1,0 +1,52 @@
+class Solution
+{   
+    public: 
+    //Function to return a list of integers denoting spiral traversal of matrix.
+    vector<int> spirallyTraverse(vector<vector<int> > a, int r, int c) 
+    {
+        // code here
+        vector<int> spiral;
+        int index = 0, top = 0, down = r-1, left = 0, right = c-1, dir = 0;
+        while(top<=down && left<=right)
+        {
+            if(dir == 0)
+            {
+                for(int i = left; i<=right; i++)
+                {
+                    spiral.push_back(a[top][i]);
+                    index++;
+                }
+                top++;
+            }
+            else if(dir == 1)
+            {
+                for(int i = top; i<=down; i++)
+                {
+                    spiral.push_back(a[i][right]);
+                    index++;
+                }
+                right--;
+            }
+            else if(dir == 2)
+            {
+                for(int i = right; i>=left; i--)
+                {
+                    spiral.push_back(a[down][i]);
+                    index++;
+                }
+                down--;
+            }
+            else if(dir == 3)
+            {
+                for(int i = down; i>=top; i--)
+                {
+                    spiral.push_back(a[i][left]);
+                    index++;
+                }
+                left++;
+            }
+            dir = (dir+1)%4;
+        }
+        return spiral;
+    }
+};

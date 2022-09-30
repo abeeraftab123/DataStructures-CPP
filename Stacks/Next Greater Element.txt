@@ -1,0 +1,25 @@
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+        vector<long long> nge(n-1,-1);
+        stack<long long> st;
+        st.push(arr[n-1]);
+        nge.push_back(-1);
+        for(int i = n-2; i>=0; i--)
+        {
+            while(!st.empty() && st.top()<=arr[i])
+                st.pop();
+            if(!st.empty())
+            {
+                nge[i] = st.top();
+                
+            }
+            else
+            {
+                nge[i] = -1;
+            }
+            
+                st.push(arr[i]);
+        }
+        //reverse(nge.begin(), nge.end());
+        return nge;
+    }

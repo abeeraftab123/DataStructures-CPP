@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void preorderDfs(TreeNode* node, vector<int>& trackVec)
+    {
+        if (node == nullptr)
+        {
+            return;
+        }
+        trackVec.push_back(node->val);
+        preorderDfs(node->left, trackVec);
+        
+        preorderDfs(node->right, trackVec);
+
+    }
+
+    vector<int> preorderTraversal(TreeNode* root) 
+    {
+        vector<int> track;
+        preorderDfs(root,track);
+        return track;
+    }
+};

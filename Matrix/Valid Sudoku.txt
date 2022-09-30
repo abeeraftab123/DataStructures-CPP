@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        unordered_map<string, int> st;
+       for(int i = 0; i < 9; i++)                                                                    // i means row , j means col
+           for(int j = 0; j < 9; j++){
+               if(board[i][j] != '.'){
+                   
+                   int b=(i/3)*3 + (j/3);                                                            //formula to calculate box no. (i.e 0 to 8)
+                   string row = 'r' + to_string(i) + to_string(board[i][j]);                         //"r+5+7" example 5 is row num, 7 is value
+                   string col = 'c' + to_string(j) + to_string(board[i][j]);                         
+                   string box = "box" + to_string(b) + to_string(board[i][j]);
+                   
+                   if(st.count(row) || st.count(col) || st.count(box)){                              // if found duplicate the invalis sudoku
+                       return false;
+                   }else{                                                                            //else map them
+                       st[row]++;
+                       st[col]++;
+                       st[box]++;
+                   }
+               }
+           }
+        return true;
+    
+    }
+};

@@ -1,0 +1,14 @@
+    void fun(int n, vector<int> arr, int sum, vector<int> &ans){
+       if(n==0){
+           ans.push_back(sum);
+           return ;
+       }
+       fun(n-1, arr, sum, ans);
+       fun(n-1, arr, sum+arr[n-1], ans);
+   }
+   vector<int> subsetSums(vector<int> arr, int n)
+   {
+       vector<int> ans;
+       fun(n, arr, 0, ans);
+       return ans;
+   }
